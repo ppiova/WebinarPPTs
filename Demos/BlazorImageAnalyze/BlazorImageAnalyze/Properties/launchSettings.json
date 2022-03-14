@@ -13,7 +13,7 @@
       "launchBrowser": true,
       "environmentVariables": {
         "COMPUTER_VISION_ENDPOINT": "https://xamarincomputevision.cognitiveservices.azure.com/",
-        "COMPUTER_VISION_SUBSCRIPTION_KEY_HERE": "af5a872e0dbf441d97c16ca50c58753b",
+        "COMPUTER_VISION_SUBSCRIPTION_KEY_HERE": "",
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
     },
