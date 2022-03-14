@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<parameters>
+  <parameter name="IIS Web Application Name" description="" value="AnalisisSentimiento" tags="IisApp">
+    <parameterEntry kind="ProviderPath" scope="IisApp" match="^E:\\GitMLDotNet\\03-ScalableSentimentAnalysisBlazorWebApp\\BlazorSentiment\.Client\\obj\\Release\\netstandard2\.0\\PubTmp\\Out\\$" />
+  </parameter>
+</parameters>

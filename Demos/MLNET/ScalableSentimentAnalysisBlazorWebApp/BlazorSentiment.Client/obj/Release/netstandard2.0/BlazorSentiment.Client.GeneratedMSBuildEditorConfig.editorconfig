@@ -1,0 +1,3 @@
+is_global = true
+build_property.RootNamespace = BlazorSentiment.Client
+build_property.ProjectDir = E:\GitMLDotNet\03-ScalableSentimentAnalysisBlazorWebApp\BlazorSentiment.Client\
