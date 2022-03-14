@@ -1,0 +1,29 @@
+﻿@page "/images-ocr"
+@inherits ImagesOCRModel
+
+<h2>OCR -  Blazor and Azure Computer Vision Cognitive Service</h2>
+
+<div class="row">
+    <div class="col-md-5">
+        <div class="image-container">
+            <img class="preview-image" src=@imagePreview>
+        </div>
+        <InputFile OnChange="ViewImage" />
+        <p>@status</p>
+        <hr />
+        <button disabled="@loading" class="btn btn-primary btn-lg" @onclick="GetText">
+            @if (loading)
+            {
+                <span class="spinner-border spinner-border-sm mr-1"></span>
+            }
+            Extract Text
+        </button>
+    </div>
+
+    <div class="col-md-5">
+        <textarea disabled class="form-control" rows="10" cols="15">@Result.DetectedText</textarea>
+        <hr />
+      
+    </div>
+
+</div>

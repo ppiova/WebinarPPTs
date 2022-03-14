@@ -1,0 +1,11 @@
+{
+  "profiles": {
+    "ComputerVisionExample": {
+      "commandName": "Project",
+      "environmentVariables": {
+        "COMPUTER_VISION_ENDPOINT": "https://xamarincomputevision.cognitiveservices.azure.com/",
+        "COMPUTER_VISION_SUBSCRIPTION_KEY_HERE": ""
+      }
+    }
+  }
+}

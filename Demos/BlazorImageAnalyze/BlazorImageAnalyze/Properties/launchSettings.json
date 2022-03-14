@@ -1,0 +1,31 @@
+{
+  "iisSettings": {
+    "windowsAuthentication": false,
+    "anonymousAuthentication": true,
+    "iisExpress": {
+      "applicationUrl": "http://localhost:65103",
+      "sslPort": 44398
+    }
+  },
+  "profiles": {
+    "IIS Express": {
+      "commandName": "IISExpress",
+      "launchBrowser": true,
+      "environmentVariables": {
+        "COMPUTER_VISION_ENDPOINT": "https://xamarincomputevision.cognitiveservices.azure.com/",
+        "COMPUTER_VISION_SUBSCRIPTION_KEY_HERE": "af5a872e0dbf441d97c16ca50c58753b",
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      }
+    },
+    "BlazorImageAnalyze": {
+      "commandName": "Project",
+      "launchBrowser": true,
+      "environmentVariables": {
+        "COMPUTER_VISION_ENDPOINT": "https://xamarincomputevision.cognitiveservices.azure.com/",
+        "COMPUTER_VISION_SUBSCRIPTION_KEY_HERE": "",
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "applicationUrl": "https://localhost:5001;http://localhost:5000"
+    }
+  }
+}

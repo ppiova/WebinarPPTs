@@ -1,0 +1,105 @@
+﻿@page "/"
+@using BlazorInputFile
+@using Microsoft.Azure.CognitiveServices.Vision.ComputerVision
+@using Microsoft.Azure.CognitiveServices.Vision.ComputerVision.Models
+@using System.IO
+@inject Microsoft.Extensions.Configuration.IConfiguration config
+
+
+<h1>Azure Cognitive Services</h1>
+
+<h3>Welcome to Computer Vision in Blazor</h3>
+
+<label class="btn btn-secondary" for="input">Choose Image to analyze!</label>
+
+<InputFile OnChange="async(image) => await Analyze(image)" id="input" style="display: none;">
+
+</InputFile>
+
+<img class="d-block" height="300" width="400" src="data:image/jpg;base64,@base64image" />
+
+@if (imageAnalysis != null)
+{
+<div class="alert alert-info">
+    <h3>I see... @imageAnalysis.Description.Captions.First().Text</h3>
+
+
+    <h4>Tags</h4>
+    @foreach (var item in imageAnalysis.Tags.OrderByDescending(s => s.Confidence))
+    {
+        <p class="d-block">@item.Name @item.Confidence</p>
+    }
+    @if (imageAnalysis.Faces != null)
+    {
+        <h4>Faces</h4>
+        @foreach (var face in imageAnalysis.Faces)
+        {
+            <p class="d-block">Genero: @face.Gender and Age:@face.Age</p>
+
+        }
+
+    }
+    <h2>Colors Scheme:</h2>
+    <h5>Is Black and White?:@imageAnalysis.Color.IsBWImg </h5>
+
+    <h5>Dominant background color:@imageAnalysis.Color.DominantColorBackground </h5>
+    <h5>Dominant foreground color:@imageAnalysis.Color.DominantColorForeground </h5>
+    <h5>Dominant colors: @string.Join(",", imageAnalysis.Color.DominantColors) </h5>
+
+
+</div>
+
+}
+
+@code{
+
+    // Add your Computer Vision subscription key and endpoint
+    string key = Environment.GetEnvironmentVariable("COMPUTER_VISION_SUBSCRIPTION_KEY_HERE");
+    string endPoint = Environment.GetEnvironmentVariable("COMPUTER_VISION_ENDPOINT");
+
+    string base64image;
+
+    ComputerVisionClient ComputerVisionClient;
+
+    MemoryStream memoryStream;
+
+    ImageAnalysis imageAnalysis;
+
+    IList<VisualFeatureTypes?> visualFeatures;
+
+    protected override async Task OnInitializedAsync()
+    {
+        memoryStream = new MemoryStream();
+        ComputerVisionClient = new ComputerVisionClient(new ApiKeyServiceClientCredentials(key))
+        {
+            Endpoint = endPoint
+        };
+
+
+    }
+
+    public async Task Analyze(IFileListEntry[] image)
+    {
+        var features = new List<VisualFeatureTypes?>()
+    {
+                VisualFeatureTypes.Adult,
+                VisualFeatureTypes.Brands,
+                VisualFeatureTypes.Categories,
+                VisualFeatureTypes.Color,
+                VisualFeatureTypes.Description,
+                VisualFeatureTypes.Faces,
+                VisualFeatureTypes.ImageType,
+                VisualFeatureTypes.Objects,
+                VisualFeatureTypes.Tags
+
+            };
+
+        await image.First().Data.CopyToAsync(memoryStream);
+        base64image = Convert.ToBase64String(memoryStream.ToArray());
+        memoryStream.Position = 0;
+
+        imageAnalysis = await ComputerVisionClient.AnalyzeImageInStreamAsync(memoryStream, visualFeatures: features);
+        StateHasChanged();
+
+    }
+}

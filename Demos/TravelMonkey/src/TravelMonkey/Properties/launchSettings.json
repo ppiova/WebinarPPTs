@@ -1,0 +1,12 @@
+{
+  "profiles": {
+    "TravelMonkey": {
+      "commandName": "Project",
+      "environmentVariables": {
+        "TranslationsApiKey": "527d831813064a719c0d9d9f20bac464",
+        "BingImageSearch": "63993f6f9d5a4798a8b7b9b86325627a",
+        "ComputerVisionApiKey": "7c35f254d864405a94891a04ad1183aa"
+      }
+    }
+  }
+}

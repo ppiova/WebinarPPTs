@@ -1,0 +1,12 @@
+{
+  "profiles": {
+    "FaceApiMaskConsoleExample": {
+      "commandName": "Project",
+      "environmentVariables": {
+        "FACE_SUBSCRIPTION_KEY_HERE": "",
+        "IMAGE_BASE_URL_MASK": "https://demosai.blob.core.windows.net/faceapi/",
+        "FACE_ENDPOINT_HERE": "https://xamarinfaceapi.cognitiveservices.azure.com/"
+      }
+    }
+  }
+}
